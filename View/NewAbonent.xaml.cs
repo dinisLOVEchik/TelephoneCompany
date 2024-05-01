@@ -16,11 +16,11 @@ using TelephoneCompanyApp.ViewModel;
 namespace TelephoneCompanyApp.View
 {
     /// <summary>
-    /// Логика взаимодействия для SearchByNumber.xaml
+    /// Логика взаимодействия для AddNewAbonent.xaml
     /// </summary>
-    public partial class SearchByNumber : Window
+    public partial class NewAbonent : Window
     {
-        public SearchByNumber()
+        public NewAbonent()
         {
             InitializeComponent();
             DataContext = new DataManageVM();

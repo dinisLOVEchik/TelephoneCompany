@@ -9,9 +9,8 @@ namespace TelephoneCompanyApp.Model
     public class Abonent
     {
         public int Id {  get; set; }
-        public string Name { get; set; }
-        public string SurName { get; set; }
-        public List<PhoneNumber> PhoneNumbers { get; set; }
+        public string FullName { get; set; }
         public string Address { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

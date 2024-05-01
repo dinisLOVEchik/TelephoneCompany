@@ -11,19 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TelephoneCompanyApp.ViewModel;
 
 namespace TelephoneCompanyApp.View
 {
     /// <summary>
-    /// Логика взаимодействия для SearchByNumber.xaml
+    /// Логика взаимодействия для MessageView.xaml
     /// </summary>
-    public partial class SearchByNumber : Window
+    public partial class MessageView : Window
     {
-        public SearchByNumber()
+        public MessageView(string text)
         {
             InitializeComponent();
-            DataContext = new DataManageVM();
+            MessageText.Text = text;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -14,21 +14,23 @@
         </Grid.RowDefinitions>
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Button Content="Поиск" Margin="0,0,1,0"/>
-            <Button Content="Выгрузить CSV" Margin="1,0,1,0"/>
-            <Button Content="Улицы" Margin="1,0,0,0"/>
+            <Button Content="Поиск" Command="{Binding OpenSearchByNumberWindow}"  Margin="0,0,1,0"/>
+            <Button Content="Выгрузить CSV" Click="Button_Click_1" Margin="1,0,1,0"/>
+            <Button Content="Улицы" Command="{Binding OpenStreetsWindow}" Margin="1,0,0,0"/>
         </StackPanel>
 
         <!-- DataGrid -->
-        <DataGrid x:Name="abonentsDataGrid" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding AllAbonents}">
+        <DataGrid x:Name="ViewAllAbonents" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding AllAbonents}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}"/>
-                <DataGridTextColumn Header="Улица" Binding="{Binding Street}"/>
-                <DataGridTextColumn Header="Номер дома" Binding="{Binding HouseNumber}"/>
-                <DataGridTextColumn Header="Домашний телефон" Binding="{Binding HomePhoneNumber}"/>
-                <DataGridTextColumn Header="Рабочий телефон" Binding="{Binding WorkPhoneNumber}"/>
-                <DataGridTextColumn Header="Мобильный телефон" Binding="{Binding MobilePhoneNumber}"/>
+                <DataGridTextColumn Header="ФИО" Width="150" Binding="{Binding Path=FullName}"/>
+                <DataGridTextColumn Header="Адрес" Width="150" Binding="{Binding Path=Address}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Path=PhoneNumber}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Добавить абонента" Command="{Binding OpenNewAbonentWindow}"/>
+            <Button Content="Редактировать абонента"/>
+            <Button Content="Удалить абонента"/>
+        </StackPanel>
     </Grid>
 </Window>

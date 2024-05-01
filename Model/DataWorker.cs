@@ -1,4 +1,8 @@
-﻿using TelephoneCompanyApp.Model.Data;
+﻿using System.Data;
+using System.IO;
+using System.Windows.Controls;
+using System.Windows.Input;
+using TelephoneCompanyApp.Model.Data;
 
 namespace TelephoneCompanyApp.Model
 {
@@ -21,7 +25,7 @@ namespace TelephoneCompanyApp.Model
                 List<Abonent> result = new List<Abonent>();
                 foreach(Abonent ab in GetAllAbonents())
                 {
-                    bool res = ab.PhoneNumbers.Any(num => num.Number.Contains(number));
+                    bool res = ab.PhoneNumber.Contains(number);
                     if (res)
                     {
                         result.Add(ab);
@@ -31,20 +35,18 @@ namespace TelephoneCompanyApp.Model
             }
         }
         //создать абонента
-        public static string CreateAbonent(string name, string surName, List<PhoneNumber> numbers, string address)
+        public static string CreateAbonent(string fullName, string address, string number)
         {
             string result = "Абонент уже существует!";
             using(ApplicationContext db = new ApplicationContext())
             {
-                bool checkIsExist = db.Abonents.Any(ab => ab.Name == name 
-                && ab.SurName == surName && ab.Address == address);
+                bool checkIsExist = db.Abonents.Any(ab => ab.FullName == fullName && ab.Address == address && ab.PhoneNumber == number);
                 if (!checkIsExist)
                 {
                     Abonent abonent = new Abonent 
                     { 
-                        Name = name, 
-                        SurName = surName, 
-                        PhoneNumbers = numbers, 
+                        FullName = fullName, 
+                        PhoneNumber = number, 
                         Address = address
                     };
                     db.Abonents.Add(abonent);
@@ -54,7 +56,6 @@ namespace TelephoneCompanyApp.Model
                 return result;
             }
         }
-
         //создать адрес
         public static string CreateAddress(string street, string houseNumber, Abonent abonent)
         {
@@ -80,7 +81,7 @@ namespace TelephoneCompanyApp.Model
         }
 
         //создать телефонный номер
-        public static string CreatePhoneNumber(string number, PhoneType type, Abonent abonent)
+        public static string CreatePhoneNumber(string number, Abonent abonent)
         {
             string result = "Номер уже существует!";
             using (ApplicationContext db = new ApplicationContext())
@@ -91,7 +92,6 @@ namespace TelephoneCompanyApp.Model
                     PhoneNumber phoneNumber = new PhoneNumber 
                     { 
                         Number = number, 
-                        Type = type,
                         AbonentId = abonent.Id
                     };
                     db.PhoneNumbers.Add(phoneNumber);

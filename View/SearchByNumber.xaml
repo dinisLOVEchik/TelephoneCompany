@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Margin="10">
             <Label Content="Введите номер:"/>
-            <TextBox x:Name="txtNumber"/>
+            <TextBox Name="Name"/>
             <Button Content="Поиск" Margin="10,5,0,0"/>
         </StackPanel>
     </Grid>
